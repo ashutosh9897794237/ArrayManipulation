@@ -3,32 +3,81 @@ const data = [
     { name: "jane", age: 27, profession: "admin" },
   ];
   
-  // 1. Print Developers
-  function printDeveloper() {}
+  function printDeveloper() {
+    console.log("Developers:");
+    const developers = data.filter(person => person.profession.toLowerCase() === 'developer');
+    developers.forEach(developer => console.log(developer.name));
+  }
   
-  // 2. Add Data
-  function addData() {}
+  function addData() {
+    const name = prompt("Enter name:");
+    const age = parseInt(prompt("Enter age:"));
+    const profession = prompt("Enter profession:");
+    
+    data.push({ name, age, profession });
+  }
   
-  // 3. Remove Admins
-  function removeAdmin() {}
+  function removeAdmin() {
+    const nonAdmins = data.filter(person => person.profession.toLowerCase() !== 'admin');
+    console.log("Non-admins:");
+    console.log(nonAdmins);
+  }
   
-  // 4. Concatenate Array
-  function concatenateArray() {}
+  function concatenateArray() {
+    const newArray = [
+      { name: "alex", age: 30, profession: "manager" },
+      { name: "emma", age: 26, profession: "developer" }
+    ];
   
-  // 5. Average Age
-  function averageAge() {}
+    const combinedArray = data.concat(newArray);
+    console.log("Combined Array:");
+    console.log(combinedArray);
+  }
   
-  // 6. Age Check
-  function checkAgeAbove25() {}
+  function averageAge() {
+    const totalAge = data.reduce((sum, person) => sum + person.age, 0);
+    const average = totalAge / data.length;
+    console.log("Average Age:", average);
+  }
   
-  // 7. Unique Professions
-  function uniqueProfessions() {}
+  function checkAgeAbove25() {
+    const above25 = data.some(person => person.age > 25);
+    console.log("Is there anyone above 25?", above25);
+  }
   
-  // 8. Sort by Age
-  function sortByAge() {}
+  function uniqueProfessions() {
+    const uniqueProfessions = [...new Set(data.map(person => person.profession))];
+    console.log("Unique Professions:", uniqueProfessions);
+  }
   
-  // 9. Update Profession
-  function updateJohnsProfession() {}
+  function sortByAge() {
+    const sortedByAge = data.slice().sort((a, b) => a.age - b.age);
+    console.log("Sorted by Age:");
+    console.log(sortedByAge);
+  }
   
-  // 10. Profession Count
-  function getTotalProfessions() {}
+  function updateJohnsProfession() {
+    const john = data.find(person => person.name.toLowerCase() === 'john');
+    if (john) {
+      john.profession = 'manager';
+      console.log("John's profession updated to 'manager'.");
+    }
+  }
+  
+  function getTotalProfessions() {
+    const professionCount = {
+      developer: 0,
+      admin: 0
+    };
+  
+    data.forEach(person => {
+      if (person.profession.toLowerCase() === 'developer') {
+        professionCount.developer++;
+      } else if (person.profession.toLowerCase() === 'admin') {
+        professionCount.admin++;
+      }
+    });
+  
+    console.log("Profession Count:", professionCount);
+  }
+  
